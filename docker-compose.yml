@@ -1,0 +1,26 @@
+version: '2.0'
+    
+services:
+    # docker run --rm --cpus 8 --gpus device=0 -p8080:8080 -p8081:8081 -p8082:8082 --mount type=bind,source=/home/giancos/git/cloudlabeling-model-server/mmdet2torchserve/MODEL_STORE,target=/home/model-server/model-store mmdet-serve:latest
+    # docker build --tag cloudlabeling-torchserve-mmdet cloudlabeling-torchserve-mmdet/docker && docker run --rm --cpus 8 --gpus device=0 -p8080:8080 -p8081:8081 -p8082:8082 --network backend cloudlabeling-torchserve-mmdet:latest
+    torchserve:
+        image: yolov8n:latest
+        container_name: "yolov8n"
+        ports:
+            - "8080:8080"
+            - "8081:8081"
+            - "8082:8082"
+        cpus: 4
+        # deploy:
+        #     resources:
+        #         reservations:
+        #             devices:
+        #               - driver: nvidia
+        #                 device_ids: ['0']
+        #                 capabilities: [gpu]
+        volumes:
+            - ${PWD}/test_dir:/opt/ml
+            - ${PWD}/serve/model-store:/home/model-server/model-store
+
+        entrypoint: /opt/program/serve/entrypoint.sh
+        command: serve
