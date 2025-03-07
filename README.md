@@ -13,7 +13,13 @@ cd local_test
 sudo sh run_server.sh
 ```
 
-## 3. Deploy with TorchServe
+## 3. Run Inference on a new Image
+
+```sh
+curl http://localhost:8080/predictions/best_model -T local_test/serve/006-3.jpg
+```
+
+## 4. Manage Model with TorchServe
 
 ### Register the Model
 
@@ -28,7 +34,7 @@ curl -X POST "http://localhost:8081/models?url=/home/model-server/model-store/be
 If you have a model already registered with best_model name, you can unregister it with this command:
 
 ```sh
-curl-X DELETE http://localhost:8081/models/best_model
+curl -X DELETE http://localhost:8081/models/best_model
 ```
 
 ### Assign a Worker
