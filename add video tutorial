@@ -1,5 +1,4 @@
 # AI Trichome Phenotyping - Setup Guide
-
 ## 1. Clone the Repository
 
 ```sh
@@ -48,4 +47,4 @@ curl -X PUT "http://localhost:8081/models/best_model?min_worker=1"
 ```sh
 curl http://localhost:8080/predictions/best_model -T local_test/serve/006-3.jpg
 ```
-
+If you want a faster and more user-friendly way to use the model, you can access it on the [Thya Tech](https://thya-technology.com/) platform by following this simple [video tutorial](https://drive.google.com/file/d/16JQ_mrljQwzsqbN3J0ClpUHcgYxpD0BS/view?usp=drive_link).
